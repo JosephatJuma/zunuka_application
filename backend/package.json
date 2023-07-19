@@ -1,0 +1,14 @@
+{
+  "name": "zunguka",
+  "version": "1.0.0",
+  "description": "travel app",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Juma Josephat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
