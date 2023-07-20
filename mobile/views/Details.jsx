@@ -1,5 +1,6 @@
-import { Icon, Text, Image, Button, StatusBar, IconButton } from "native-base";
+import { Text, StatusBar } from "native-base";
 import React, { memo } from "react";
+import { Image, Button } from "@rneui/base";
 import BackButton from "../components/shared/BackButton";
 const Details = ({ item }) => {
   return (
@@ -7,19 +8,17 @@ const Details = ({ item }) => {
       <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
       <BackButton />
       <Image
-        height={"60%"}
-        width={"100%"}
+        style={{ width: "100%", height: 500 }}
         source={{
           uri: item.image,
         }}
-        alt="Image"
-        rounded={"8"}
       />
 
       <Text>{item.title}</Text>
-      <Button bg={"#FF5733"} m={2}>
-        Book now
-      </Button>
+      <Button
+        title="Book now"
+        buttonStyle={{ backgroundColor: "#FF5733", margin: 2 }}
+      />
     </>
   );
 };

@@ -11,6 +11,9 @@ import {
 import Account from "./views/Account";
 import Details from "./views/Details";
 import Cart from "./views/Cart";
+import Login from "./views/Login";
+import Register from "./views/Register";
+import Search from "./views/Search";
 export default function App() {
   const HomeScreen = () => {
     return (
@@ -39,6 +42,30 @@ export default function App() {
     return (
       <NativeBaseProvider>
         <Details item={item} />
+      </NativeBaseProvider>
+    );
+  };
+
+  const SearchScreen = () => {
+    return (
+      <NativeBaseProvider>
+        <Search />
+      </NativeBaseProvider>
+    );
+  };
+
+  //Auth Screens
+  const LoginScreen = () => {
+    return (
+      <NativeBaseProvider>
+        <Login />
+      </NativeBaseProvider>
+    );
+  };
+  const RegisterScreen = () => {
+    return (
+      <NativeBaseProvider>
+        <Register />
       </NativeBaseProvider>
     );
   };
@@ -80,8 +107,30 @@ export default function App() {
           }}
         />
         <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}
+        />
+        <Stack.Screen
           name="Cart"
           component={CartScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}
+        />
+
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
           options={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           }}
