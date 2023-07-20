@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     height: "100%",
     width: "100%",
-    backgroundColor: "#800080",
+    backgroundColor: "#FF5733",
     color: "white",
   },
 
@@ -116,7 +116,7 @@ const useStyles = createStyles((theme) => ({
     color: "GrayText",
 
     "&:hover": {
-      backgroundColor: "#800080",
+      backgroundColor: "#FF5733",
       color: "white",
     },
   },
@@ -129,13 +129,20 @@ const useStyles = createStyles((theme) => ({
 
   linkIcon: {
     ref: getStylesRef("icon"),
-    opacity: 0.75,
     marginRight: theme.spacing.sm,
+    color: "#fff",
+    fontSize: 40,
+  },
+  actionIcon: {
+    alignItems: "center",
+    ":hover": {
+      backgroundColor: theme.fn.primaryColor(),
+    },
   },
 
   linkActive: {
     "&, &:hover": {
-      backgroundColor: "#800080",
+      backgroundColor: "#FF5733",
       [`& .${getStylesRef("icon")}`]: {
         opacity: 0.9,
       },
@@ -190,12 +197,12 @@ export function AppHeader({ active }) {
             />
             <Group>
               <Indicator inline label="10" size={16} radius={"lg"}>
-                <ActionIcon>
-                  <IconBell />
+                <ActionIcon className={classes.actionIcon}>
+                  <IconBell color="white" />
                 </ActionIcon>
               </Indicator>
-              <ActionIcon>
-                <IconMessage />
+              <ActionIcon className={classes.actionIcon}>
+                <IconMessage color="white" />
               </ActionIcon>
             </Group>
             <Menu

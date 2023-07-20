@@ -1,33 +1,33 @@
-const Task = require("../models/task");
+const Trip = require("../models/trips");
 
-//Create a new task
-exports.addTask = async (req, res) => {
-  const newTask = new Task(req.body);
+//Create a new Trip
+exports.addTrip = async (req, res) => {
+  const newTrip = new Trip(req.body);
   try {
-    await newTask.save().then((task) => {
-      res.send({ message: "Task added", success: true, task: task });
+    await newTrip.save().then((trip) => {
+      res.send({ message: "Trip added", success: true, trip: trip });
     });
   } catch (error) {
     res.send({ message: "An error occured", success: false });
   }
 };
 
-//get user's tasks
+//get all Trips
 exports.all = async (req, res) => {
-  await Task.find({ user_id: req.params.user_id })
+  await Trip.find()
     .sort({ _id: -1 })
-    .then((userTasks) => {
-      res.send({ tasks: userTasks });
+    .then((trips) => {
+      res.send({ trips: trips });
     })
     .catch((err) => {
       res.send({ message: err.message });
     });
 };
 
-//delete a tasks
+//delete a Trips
 
 exports.delete = async (req, res) => {
-  await Task.deleteOne({ _id: req.params.task_id })
+  await Trip.deleteOne({ _id: req.params.trip_id })
     .then((deleted) => {
       res.send({ success: deleted });
     })
@@ -36,12 +36,12 @@ exports.delete = async (req, res) => {
     });
 };
 
-//edit specified details of the task
+//edit specified details of the Trip
 exports.modify = async (req, res) => {
   const { field, value } = req.body;
   const updateQuery = { $set: {} };
   updateQuery.$set[field] = value;
-  await Task.updateOne({ _id: req.params.task_id }, updateQuery)
+  await Trip.updateOne({ _id: req.params.trip_id }, updateQuery)
     .then((updated) => {
       res.send({ success: updated });
     })
