@@ -1,10 +1,11 @@
 import React, { memo } from "react";
-import { Text, Button, Pressable, Image } from "native-base";
+import { Button, Pressable, Image } from "native-base";
 import { FlashList } from "@shopify/flash-list";
-
+import { Heading, Text } from "native-base";
+import { ScrollView } from "react-native";
 import data from "./shared/data";
 import { useNavigation } from "@react-navigation/native";
-function HomeMain({ onScroll }) {
+function HomeMain({ onScroll, handleScroll }) {
   const renderItem = ({ item }) => {
     return (
       <Pressable
@@ -22,7 +23,7 @@ function HomeMain({ onScroll }) {
             otherParam: "anything you want here",
           });
         }}
-        _pressed={{ background: "unset" }}
+        _pressed={{ backgroundColor: "gray" }}
       >
         <Image
           height={"60%"}
@@ -34,7 +35,10 @@ function HomeMain({ onScroll }) {
           rounded={"8"}
         />
 
-        <Text>{item.title}</Text>
+        <Heading m={2} fontSize={16}>
+          {item.title}
+        </Heading>
+        <Text>About the trip</Text>
       </Pressable>
     );
   };
@@ -57,7 +61,12 @@ function HomeMain({ onScroll }) {
   const nav = useNavigation();
 
   return (
-    <>
+    <ScrollView
+      style={{ flex: 1 }}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
+      //contentContainerStyle={{ height: "100%" }}
+    >
       <FlashList
         scrollEnabled={true}
         horizontal={true}
@@ -66,12 +75,12 @@ function HomeMain({ onScroll }) {
         data={categories}
         renderItem={renderCat}
         keyExtractor={(item) => item}
-        //contentContainerStyle={{ height: 100 }}
+        contentContainerStyle={{ height: 100 }}
       />
 
       <FlashList
         scrollEnabled={true}
-        onScroll={onScroll}
+        onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
         data={data}
         renderItem={renderItem}
@@ -85,7 +94,7 @@ function HomeMain({ onScroll }) {
         removeClippedSubviews={true}
         estimatedItemSize={50}
       />
-    </>
+    </ScrollView>
   );
 }
 export default memo(HomeMain);

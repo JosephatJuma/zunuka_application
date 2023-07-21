@@ -6,26 +6,19 @@ import { Image, Pressable } from "react-native";
 import useNav from "../../hooks/useNav";
 import data from "../shared/data";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { List } from "react-native-paper";
 function CartBody({ onScroll }) {
   const renderItem = ({ item }) => {
     return (
-      <Card width="96%" rounded="10" shadow="2" m={1} bg="#fff" h={100} p={1}>
-        <Flex
-          flexDirection={"row"}
-          height={"100%"}
-          width={"100%"}
-          justifyContent={"space-between"}
+      <List.Section>
+        <List.Accordion
+          title="Uncontrolled Accordion"
+          left={(props) => <List.Icon {...props} icon="history" />}
         >
           <Image
             source={{ uri: item.image }}
             style={{ width: "40%", borderRadius: 10 }}
           />
-
-          <Text>{item.title}</Text>
-          <>
-            <Button title="+" />
-            <Button title="-" />
-          </>
           <Pressable
             onPress={() => {
               nav.navigate("Details", {
@@ -41,8 +34,10 @@ function CartBody({ onScroll }) {
               color="#FF5733"
             />
           </Pressable>
-        </Flex>
-      </Card>
+          <List.Item title="First item" />
+          <List.Item title="Second item" />
+        </List.Accordion>
+      </List.Section>
     );
   };
   const nav = useNav();

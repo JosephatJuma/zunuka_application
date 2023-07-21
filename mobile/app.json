@@ -5,6 +5,16 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3b553e94-d713-431a-b238-2a983a45376e"
+      },
+      "env": {
+        "API_URL":"https://zunguka.onrender.com/api/v1/"
+         
+      }
+
+    }
   }
 }

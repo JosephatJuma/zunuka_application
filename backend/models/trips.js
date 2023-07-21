@@ -8,7 +8,7 @@ const Trip = new mongoose.Schema({
   status: { type: String },
   color: { type: String },
   label: { type: String },
-  priority: { type: Number },
+  likes: { type: Number },
 });
 
 module.exports = mongoose.model("trip", Trip);

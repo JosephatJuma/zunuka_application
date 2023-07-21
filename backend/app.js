@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   res.send("App is running");
 });
 
-app.use("/api/v2", apiRoutes);
+app.use("/api/v1", apiRoutes);
 
 app.listen(port, () => {
   console.log(`app running on prot ${port}`);
