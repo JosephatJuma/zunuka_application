@@ -1,10 +1,10 @@
 import { FlashList } from "@shopify/flash-list";
-import { Input, StatusBar } from "native-base";
+import { Input, StatusBar, Icon, VStack } from "native-base";
 import React, { useState, useRef } from "react";
 import { Header } from "@rneui/base";
 import BackButton from "../components/shared/BackButton2";
 import Footer from "../components/Footer";
-import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import CartBody from "../components/cart/CartBody";
 const Cart = () => {
@@ -21,12 +21,24 @@ const Cart = () => {
     <>
       <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
       <Header leftComponent={<BackButton />} backgroundColor="#fff" />
-      <Input
-        leftElement={<AntDesign name="search1" size={26} />}
-        m={2}
-        shadow={"0"}
-        backgroundColor={"#fff"}
-      />
+      <VStack w="96%" alignSelf="center">
+        <Input
+          placeholder="Search"
+          variant="filled"
+          width="100%"
+          borderRadius="10"
+          py="1"
+          px="2"
+          InputLeftElement={
+            <Icon
+              ml="2"
+              size="4"
+              color="gray.400"
+              as={<Ionicons name="ios-search" />}
+            />
+          }
+        />
+      </VStack>
       <CartBody onScroll={handleScroll} />
       <Footer selected={2} scrollY={scrollY} />
     </>

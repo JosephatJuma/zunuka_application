@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: theme.spacing.md,
     marginTop: theme.spacing.md,
     borderTop: `${rem(1)} solid ${theme.fn.lighten(
-      theme.fn.variant({ variant: "filled", color: "#800080" }).background,
+      theme.fn.variant({ variant: "filled", color: "#FF5733" }).background,
       0.1
     )}`,
   },
@@ -56,7 +56,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
 
     "&:hover": {
-      backgroundColor: "#800080",
+      backgroundColor: "#FF5733",
       color: "white",
     },
   },
@@ -69,7 +69,7 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     "&, &:hover": {
-      backgroundColor: "#800080",
+      backgroundColor: "#FF5733",
       [`& .${getStylesRef("icon")}`]: {
         opacity: 0.9,
       },

@@ -1,13 +1,15 @@
 import React, { memo } from "react";
-import { Text, Button, Pressable, Image } from "native-base";
+import { Button, Pressable, Image } from "native-base";
 import { FlashList } from "@shopify/flash-list";
-
+import { Heading, Text } from "native-base";
+import { ScrollView, View } from "react-native";
 import data from "./shared/data";
 import { useNavigation } from "@react-navigation/native";
-function HomeMain({ onScroll }) {
+function HomeMain({ onScroll, handleScroll }) {
   const renderItem = ({ item }) => {
     return (
       <Pressable
+        flex={1}
         width="96%"
         rounded="10"
         shadow="2"
@@ -22,7 +24,7 @@ function HomeMain({ onScroll }) {
             otherParam: "anything you want here",
           });
         }}
-        _pressed={{ background: "unset" }}
+        _pressed={{ backgroundColor: "gray" }}
       >
         <Image
           height={"60%"}
@@ -34,7 +36,10 @@ function HomeMain({ onScroll }) {
           rounded={"8"}
         />
 
-        <Text>{item.title}</Text>
+        <Heading m={2} fontSize={16}>
+          {item.title}
+        </Heading>
+        <Text>About the trip</Text>
       </Pressable>
     );
   };
@@ -43,11 +48,11 @@ function HomeMain({ onScroll }) {
       <Button
         key={item}
         size={"md"}
-        rounded="7"
+        rounded="full"
         width={100}
         bg={"#FF5733"}
         shadow={"7"}
-        m={2}
+        m={1}
       >
         {item}
       </Button>
@@ -57,7 +62,12 @@ function HomeMain({ onScroll }) {
   const nav = useNavigation();
 
   return (
-    <>
+    <ScrollView
+      style={{ flex: 1 }}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
+      //contentContainerStyle={{ height: "100%" }}
+    >
       <FlashList
         scrollEnabled={true}
         horizontal={true}
@@ -71,7 +81,7 @@ function HomeMain({ onScroll }) {
 
       <FlashList
         scrollEnabled={true}
-        onScroll={onScroll}
+        onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
         data={data}
         renderItem={renderItem}
@@ -81,11 +91,10 @@ function HomeMain({ onScroll }) {
         maxToRenderPerBatch={5}
         onEndReachedThreshold={5}
         windowSize={5}
-        indicatorStyle={{ backgroundColor: "red" }}
         removeClippedSubviews={true}
         estimatedItemSize={50}
       />
-    </>
+    </ScrollView>
   );
 }
 export default memo(HomeMain);

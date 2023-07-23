@@ -6,7 +6,6 @@ import {
   Box,
   StatusBar,
   Pressable,
-  Card,
 } from "native-base";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
@@ -25,7 +24,7 @@ const Search = () => {
 
   const renderSearchHistory = ({ history }) => {
     return (
-      <List.Section title="Accordions">
+      <List.Section>
         <List.Accordion
           title="Uncontrolled Accordion"
           left={(props) => <List.Icon {...props} icon="history" />}
