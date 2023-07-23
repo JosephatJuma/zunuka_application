@@ -2,13 +2,14 @@ import React, { memo } from "react";
 import { Button, Pressable, Image } from "native-base";
 import { FlashList } from "@shopify/flash-list";
 import { Heading, Text } from "native-base";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import data from "./shared/data";
 import { useNavigation } from "@react-navigation/native";
 function HomeMain({ onScroll, handleScroll }) {
   const renderItem = ({ item }) => {
     return (
       <Pressable
+        flex={1}
         width="96%"
         rounded="10"
         shadow="2"
@@ -47,11 +48,11 @@ function HomeMain({ onScroll, handleScroll }) {
       <Button
         key={item}
         size={"md"}
-        rounded="7"
+        rounded="full"
         width={100}
         bg={"#FF5733"}
         shadow={"7"}
-        m={2}
+        m={1}
       >
         {item}
       </Button>
@@ -75,7 +76,7 @@ function HomeMain({ onScroll, handleScroll }) {
         data={categories}
         renderItem={renderCat}
         keyExtractor={(item) => item}
-        contentContainerStyle={{ height: 100 }}
+        //contentContainerStyle={{ height: 100 }}
       />
 
       <FlashList
@@ -90,7 +91,6 @@ function HomeMain({ onScroll, handleScroll }) {
         maxToRenderPerBatch={5}
         onEndReachedThreshold={5}
         windowSize={5}
-        indicatorStyle={{ backgroundColor: "red" }}
         removeClippedSubviews={true}
         estimatedItemSize={50}
       />

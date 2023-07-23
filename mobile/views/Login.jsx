@@ -100,6 +100,7 @@ const Login = () => {
 
               <Input
                 shadow={"2"}
+                placeholder="Enter Email"
                 borderRadius={"xl"}
                 backgroundColor={"white"}
                 onChangeText={handleChange("email")}
@@ -121,6 +122,7 @@ const Login = () => {
               <FormControl.Label>Password</FormControl.Label>
               <Input
                 shadow={"2"}
+                placeholder="Enter Password"
                 borderRadius={"xl"}
                 backgroundColor={"white"}
                 onChangeText={handleChange("password")}
@@ -147,8 +149,7 @@ const Login = () => {
               )}
 
               <Button
-                bg={"#FF5733"}
-                _pressed={{ background: "grey" }}
+                //buttonStyle={{ backgroundColor: "#FF5733" }}
                 onPress={handleSubmit}
                 disabled={isSending}
                 title={isSending ? <Spinner size={"lg"} /> : "Sing In"}
@@ -183,7 +184,7 @@ const Login = () => {
             zIndex: -1,
           }}
         >
-          <Circle cx={r / r + 50} cy={r} r={r} color="orange" />
+          <Circle cx={r / r} cy={r} r={120} color="orange" />
         </Canvas>
       </Animated.View>
       <Snackbar

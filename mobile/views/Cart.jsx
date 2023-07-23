@@ -21,7 +21,7 @@ const Cart = () => {
     <>
       <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
       <Header leftComponent={<BackButton />} backgroundColor="#fff" />
-      <VStack w="100%" space={5} alignSelf="center">
+      <VStack w="96%" alignSelf="center">
         <Input
           placeholder="Search"
           variant="filled"

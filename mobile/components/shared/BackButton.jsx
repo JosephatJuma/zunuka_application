@@ -7,14 +7,7 @@ function BackButton() {
   return (
     <IconButton
       variant="solid"
-      icon={
-        <Icon
-          size="sm"
-          as={<MaterialIcons name="arrow-back-ios" />}
-          color="white"
-        />
-      }
-      size={"sm"}
+      size="sm"
       rounded={"full"}
       position="absolute"
       top={10}
@@ -23,7 +16,9 @@ function BackButton() {
       padding={4}
       bg={"#FF5733"}
       onPress={() => navigation.goBack()}
-    />
+    >
+      <MaterialIcons name="arrow-back" size={20} color={"white"} />
+    </IconButton>
   );
 }
 
