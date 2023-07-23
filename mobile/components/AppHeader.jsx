@@ -6,9 +6,12 @@ import { Header } from "@rneui/base";
 import { Pressable } from "react-native";
 
 import useNav from "../hooks/useNav";
-function AppHeader({ scrollY }) {
+function AppHeader({ user }) {
   const navigation = useNav();
-
+  const initials = user?.name
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("");
   return (
     <>
       <HStack
@@ -21,9 +24,19 @@ function AppHeader({ scrollY }) {
 
         <Header
           rightComponent={
-            <Pressable onPress={() => navigation.navigate("Login")}>
+            <Pressable
+              onPress={
+                user !== null
+                  ? () => navigation.navigate("Account")
+                  : () => navigation.navigate("Login")
+              }
+            >
               <Avatar borderWidth={"2"} borderColor={"#fff"} shadow={"9"}>
-                JJ
+                {user !== null ? (
+                  initials
+                ) : (
+                  <MaterialIcons name="person" color="white" size={28} />
+                )}
               </Avatar>
             </Pressable>
           }

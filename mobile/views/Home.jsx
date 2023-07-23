@@ -5,7 +5,9 @@ import Footer from "../components/Footer";
 import { Animated } from "react-native"; // Import Animated from react-native
 import AppHeader from "../components/AppHeader";
 import HomeSlide from "../components/HomeSlide";
+import useUser from "../hooks/useUser";
 function Home() {
+  const user = useUser();
   const [scrollYX, setScrollYX] = useState(new Animated.Value(0)); // Use Animated.Value for scrollY
   const scrollY = useRef(new Animated.Value(0)).current;
   const prevScrollY = useRef(0);
@@ -49,10 +51,10 @@ function Home() {
           alignItems: "center",
         }}
       >
-        <AppHeader scrollY={scrollY} />
+        <AppHeader user={user} />
 
         <Stack>
-          <Text>Hi Josephat,</Text>
+          <Text>Hi {user !== null ? user?.name : "Guest"},</Text>
           <Heading fontWeight={"900"}>Where would you want to go?</Heading>
           <HomeSlide />
         </Stack>
