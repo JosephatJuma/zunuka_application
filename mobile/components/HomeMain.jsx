@@ -63,7 +63,7 @@ function HomeMain({ onScroll, handleScroll }) {
 
   return (
     <ScrollView
-      style={{ flex: 1 }}
+      style={{ flex: 1, width: "100%", height: "100%" }}
       onScroll={onScroll}
       scrollEventThrottle={16}
       //contentContainerStyle={{ height: "100%" }}

@@ -91,7 +91,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  imageCard: { width: "100%", height: 150 },
+  imageCard: {
+    width: "100%",
+    height: 150,
+    borderWidth: 2,
+    borderColor: "white",
+  },
   image: {
     width: "100%",
     height: "100%",

@@ -56,12 +56,7 @@ const Register = () => {
         <Formik
           initialValues={{ name: "", email: "", phone: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={(values) =>
-            submitData(
-              `https://mytasks-03uo.onrender.com/v1/api/auth/register`,
-              values
-            )
-          }
+          onSubmit={(values) => submitData(`${apiUrl}auth/register`, values)}
         >
           {({
             handleChange,

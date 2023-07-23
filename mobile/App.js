@@ -8,12 +8,14 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
+
 import Account from "./views/Account";
 import Details from "./views/Details";
 import Cart from "./views/Cart";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Search from "./views/Search";
+
 export default function App() {
   const HomeScreen = () => {
     return (
