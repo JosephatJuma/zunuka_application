@@ -1,8 +1,9 @@
 import { Text, StatusBar, Box } from "native-base";
 import React, { memo, useRef } from "react";
-import { Image, Button } from "@rneui/base";
+import { Image, Button, Rating } from "@rneui/base";
 import BackButton from "../components/shared/BackButton";
 import { ScrollView } from "react-native";
+
 const Details = ({ item }) => {
   return (
     <ScrollView>
@@ -17,6 +18,14 @@ const Details = ({ item }) => {
       />
       <Box m={2}>
         <Text>{item.title}</Text>
+        <Rating
+          type="heart"
+          ratingCount={3}
+          fractions={2}
+          startingValue={1.57}
+          imageSize={40}
+          showRating
+        />
         <Text>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam,
           fugit dicta. Nemo, nulla perspiciatis. Distinctio nulla illum quam.

@@ -51,7 +51,7 @@ function Home() {
           alignItems: "center",
         }}
       >
-        <AppHeader user={user} />
+        <AppHeader user={user} screen={"Home"} />
 
         <Stack>
           <Text>Hi {user !== null ? user?.name : "Guest"},</Text>
