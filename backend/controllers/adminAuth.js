@@ -30,13 +30,13 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   const admin = await Admin.findOne({ email: email });
   if (admin) {
-    const validPass = await bcrypt.compare(password, user.password);
+    const validPass = await bcrypt.compare(password, admin.password);
     if (!validPass) {
       res.status(200).send({ message: "Wrong Password!", success: false });
     } else {
       res
         .status(200)
-        .send({ message: "Login successfull!", success: true, user: user });
+        .send({ message: "Login successfull!", success: true, user: admin });
     }
   } else {
     res.status(200).send({ message: "Wrong Email Provided!", success: false });
