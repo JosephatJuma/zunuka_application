@@ -58,15 +58,11 @@ export const AddTripForm = React.memo(() => {
     formData.append("status", status);
     formData.append("end_date", endDate);
     try {
-      const response = await axios.post(
-        `http://192.168.1.5:1000/api/v1/trips/add/`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${api_url}trips/add`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setMessage(response.data.message);
       if (response.data.success === true) {
         setSucess(true);

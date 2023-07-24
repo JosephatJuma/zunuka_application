@@ -40,19 +40,17 @@ const getChild = (component) => (
     <Card.Section>{component}</Card.Section>
   </Card>
 );
-const BASE_HEIGHT = 360;
-const getSubHeight = (children, spacing) =>
-  BASE_HEIGHT / children - spacing * ((children - 1) / children);
+
 const useStyles = createStyles((theme) => ({
   select: {
     display: "flex",
     alignItems: "center",
-    color: "green",
+    color: theme.fn.primaryColor(),
     cursor: "pointer",
     justifyContent: "space-between",
     ":hover": {
       color: "white",
-      backgroundColor: "#800080",
+      backgroundColor: theme.fn.primaryColor(),
     },
     width: "45%",
     margin: 5,
@@ -62,15 +60,16 @@ const useStyles = createStyles((theme) => ({
     borderWidth: 2,
     padding: 20,
     minHeight: 50,
-    ":hover": { backgroundColor: "gold" },
+    ":hover": { backgroundColor: theme.fn.primaryColor() },
     fontFamily: "Poppins",
     marginTop: 5,
+    color: "white",
   },
   taskGroup: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  title: { color: "#800080", fontWeight: "bold", fontSize: 18 },
+  title: { color: theme.fn.primaryColor(), fontWeight: "bold", fontSize: 18 },
 }));
 export function Dashboard({ user }) {
   const api_url = process.env.REACT_APP_API_URL;
@@ -83,8 +82,8 @@ export function Dashboard({ user }) {
   //fetch user tasks
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(`${api_url}tasks/${user._id}`);
-      dispatch(userTasks(response.data.tasks));
+      const response = await axios.get(`${api_url}trips`);
+      dispatch(userTasks(response.data.trips));
     } catch (error) {
       console.log(error.message);
     }
@@ -96,7 +95,7 @@ export function Dashboard({ user }) {
   //send a task delete request
   const deleteTask = async (taskId) => {
     try {
-      const del = await axios.delete(`${api_url}tasks/${taskId}`);
+      const del = await axios.delete(`${api_url}trips/${taskId}`);
       if (del.data) {
         console.log(del.data);
       }
@@ -108,12 +107,12 @@ export function Dashboard({ user }) {
   //filter tasks for today
   const today = new Date();
   const tasksToday = tasks.filter((task) => {
-    const taskDate = new Date(task.due_date);
+    const taskDate = new Date(task.start_date);
     return taskDate.toDateString() === today.toDateString();
   });
 
   //get dates that have tasks on them
-  const dates = tasks.map((task) => task.due_date);
+  const dates = tasks.map((task) => task.start_date);
 
   //get tasks of status -Completetd
   const tasksCompleted = tasks.filter((task) => {
@@ -128,11 +127,11 @@ export function Dashboard({ user }) {
   //get tasks fpr this month
   const tasksThisMonth = tasks.filter(
     (task) =>
-      new Date(task.due_date).getMonth() === currentCalendarDate.getMonth()
+      new Date(task.start_date).getMonth() === currentCalendarDate.getMonth()
   );
   //get tasks over due
   const tasksOverDue = tasks.filter((task) => {
-    return new Date(task.due_date) < today && task.status === "Not Started";
+    return new Date(task.startt_date) < today && task.status === "Not Started";
   });
   return (
     <div style={{ width: "100%", margin: 10 }}>
@@ -173,7 +172,7 @@ export function Dashboard({ user }) {
               >
                 <Group sx={{ flexDirection: "column" }}>
                   <IconCalendarDue size={50} />
-                  <h4>Due Today</h4>
+                  <h4>Ending Today</h4>
                 </Group>
                 <RingProgress
                   roundCaps
@@ -203,7 +202,7 @@ export function Dashboard({ user }) {
               >
                 <Group sx={{ flexDirection: "column" }}>
                   <IconCalendarCheck size={50} />
-                  <h4> Today</h4>
+                  <h4> Trips today</h4>
                 </Group>
                 <RingProgress
                   roundCaps
@@ -238,7 +237,7 @@ export function Dashboard({ user }) {
               >
                 <Group sx={{ flexDirection: "column" }}>
                   <IconCalendarOff size={50} />
-                  <h4>Over due</h4>
+                  <h4>Past trips</h4>
                 </Group>
                 <RingProgress
                   roundCaps
@@ -307,12 +306,12 @@ export function Dashboard({ user }) {
                 alignSelf: "center",
               }}
             >
-              <h3>Tasks</h3>
+              <h3>Trips</h3>
               <Button
                 sx={{ backgroundColor: "#800080" }}
                 leftIcon={<IconPlus />}
                 component={Link}
-                to={"/tasks/add"}
+                to={"/trips/add"}
               >
                 Add
               </Button>
@@ -380,7 +379,7 @@ export function Dashboard({ user }) {
             >
               <Tabs.List>
                 <Tabs.Tab value="all">All</Tabs.Tab>
-                <Tabs.Tab value="today">Tasks today</Tabs.Tab>
+                <Tabs.Tab value="today">Trips today</Tabs.Tab>
                 <Tabs.Tab value="not started">Upcoming</Tabs.Tab>
                 <Tabs.Tab value="completed">Completed</Tabs.Tab>
               </Tabs.List>
@@ -569,7 +568,7 @@ export function Dashboard({ user }) {
                   })
                 ) : (
                   <Text className={classes.title}>
-                    There are no upcming tasks
+                    There are no upcming trips
                   </Text>
                 )}
               </Tabs.Panel>
@@ -632,7 +631,9 @@ export function Dashboard({ user }) {
                     );
                   })
                 ) : (
-                  <Text className={classes.title}>There are no completed</Text>
+                  <Text className={classes.title}>
+                    There are no completed trips
+                  </Text>
                 )}
               </Tabs.Panel>
             </Tabs>
@@ -654,7 +655,7 @@ export function Dashboard({ user }) {
             </Card>
             <Card radius={"lg"} mt={10}>
               <Title size={"sm"} color="#800080">
-                Tasks this Month
+                Trips this Month
               </Title>
               {tasksThisMonth.length > 0 ? (
                 tasksThisMonth.map((task, index) => {
@@ -675,7 +676,7 @@ export function Dashboard({ user }) {
               ) : (
                 <Badge color="#800080">
                   <Text>
-                    Good for you, no tasks for{" "}
+                    There are no trips added for{" "}
                     {currentCalendarDate.toDateString()}
                   </Text>
                 </Badge>
