@@ -13,7 +13,8 @@ const port = process.env.PORT || 1000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //support parsing of application /x-www-form-urlencoded post data
 app.use(cors());
-
+//app.use(express.static(path.join(__dirname, "public"))); //set public dir for assests
+//app.use("/public", express.static("public"));
 //db
 mongoose.connect(database.connect, {
   useNewUrlParser: true,

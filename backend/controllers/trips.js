@@ -1,8 +1,45 @@
 const Trip = require("../models/trips");
+const multer = require("multer");
+const path = require("path");
+
+// Define Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../public/assets/uploads"));
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+// Create Multer upload instance
+exports.upload = multer({ storage: storage });
 
 //Create a new Trip
 exports.addTrip = async (req, res) => {
-  const newTrip = new Trip(req.body);
+  const filename = req.file.filename;
+  const image = filename;
+  const {
+    title,
+    description,
+    start_date,
+    end_date,
+    location,
+    status,
+    color,
+    label,
+  } = req.body;
+  const newTrip = new Trip({
+    title,
+    image,
+    description,
+    start_date,
+    end_date,
+    location,
+    status,
+    color,
+    label,
+  });
   try {
     await newTrip.save().then((trip) => {
       res.send({ message: "Trip added", success: true, trip: trip });
