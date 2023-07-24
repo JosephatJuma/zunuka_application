@@ -6,16 +6,17 @@ function BackButton() {
   const navigation = useNav();
   return (
     <IconButton
-      variant="solid"
+      variant="subtle"
       size="sm"
       rounded={"full"}
       position="absolute"
       top={10}
       left={2}
       zIndex={1}
-      padding={4}
-      bg={"#FF5733"}
+      padding={3}
+      bg={"#000000c0"}
       onPress={() => navigation.goBack()}
+      
     >
       <MaterialIcons name="arrow-back" size={20} color={"white"} />
     </IconButton>

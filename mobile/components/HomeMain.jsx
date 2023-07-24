@@ -3,44 +3,50 @@ import { Button, Pressable, Image } from "native-base";
 import { FlashList } from "@shopify/flash-list";
 import { Heading, Text } from "native-base";
 import { ScrollView, View } from "react-native";
+import { Rating } from "@rneui/base";
 import data from "./shared/data";
 import { useNavigation } from "@react-navigation/native";
 function HomeMain({ onScroll, handleScroll }) {
   const renderItem = ({ item }) => {
     return (
-      <Pressable
-        flex={1}
-        width="96%"
-        rounded="10"
-        shadow="2"
-        m={1}
-        bg="#fff"
-        h={180}
-        p={1}
-        onPress={() => {
-          nav.navigate("Details", {
-            itemId: 86,
-            item: item,
-            otherParam: "anything you want here",
-          });
-        }}
-        _pressed={{ backgroundColor: "gray" }}
-      >
-        <Image
-          height={"60%"}
-          width={"100%"}
-          source={{
-            uri: item.image,
+      <View style={{ width: "96%" }}>
+        <Pressable
+          flex={1}
+          width="96%"
+          shadow="9"
+          m={1}
+          bg="#fff"
+          h={180}
+          p={0.1}
+          onPress={() => {
+            nav.navigate("Details", {
+              itemId: 86,
+              item: item,
+              otherParam: "anything you want here",
+            });
           }}
-          alt="Image"
-          rounded={"8"}
-        />
-
-        <Heading m={2} fontSize={16}>
-          {item.title}
-        </Heading>
-        <Text>About the trip</Text>
-      </Pressable>
+          _pressed={{ backgroundColor: "gray" }}
+        >
+          <Image
+            height={"100%"}
+            width={"100%"}
+            source={{
+              uri: item.image,
+            }}
+            alt="Image"
+          />
+        </Pressable>
+        <View style={{ margin: 2, alignSelf: "center" }}>
+          <Rating
+            showRating
+            fractions="{1}"
+            startingValue="{3.3}"
+            imageSize={70}
+          />
+          <Heading>{item.title}</Heading>
+          <Text>About the trip</Text>
+        </View>
+      </View>
     );
   };
   const renderCat = ({ item }) => {
@@ -50,7 +56,7 @@ function HomeMain({ onScroll, handleScroll }) {
         size={"md"}
         rounded="full"
         width={100}
-        bg={"#FF5733"}
+        bg={"#FFA500"}
         shadow={"7"}
         m={1}
       >
@@ -63,7 +69,7 @@ function HomeMain({ onScroll, handleScroll }) {
 
   return (
     <ScrollView
-      style={{ flex: 1 }}
+      style={{ flex: 1, width: "100%", height: "100%" }}
       onScroll={onScroll}
       scrollEventThrottle={16}
       //contentContainerStyle={{ height: "100%" }}

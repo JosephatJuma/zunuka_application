@@ -4,11 +4,19 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "react-native";
 import { Header } from "@rneui/base";
 import { Pressable } from "react-native";
-
+import { LinearGradient } from "expo-linear-gradient";
 import useNav from "../hooks/useNav";
-function AppHeader({ scrollY }) {
+function AppHeader({ user, screen }) {
   const navigation = useNav();
-
+  const linear = {
+    colors: ["orange", "orange", "#ff5349"],
+    start: { x: 0, y: 0.5 },
+    end: { x: 1, y: 0.5 },
+  };
+  const initials = user?.name
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("");
   return (
     <>
       <HStack
@@ -17,33 +25,44 @@ function AppHeader({ scrollY }) {
       //position="absolute"
       //top={20}
       >
-        <StatusBar bg="#3700B3" barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
 
         <Header
+          //ViewComponent={LinearGradient}
+          style={{
+            colors: ["orange", "orange", "#ff5349"],
+            start: { x: 0, y: 0.5 },
+            end: { x: 1, y: 0.5 },
+          }}
           rightComponent={
-            <Pressable onPress={() => navigation.navigate("Login")}>
+            <Pressable
+              onPress={
+                user !== null
+                  ? () => navigation.navigate("Account")
+                  : () => navigation.navigate("Login")
+              }
+            >
               <Avatar borderWidth={"2"} borderColor={"#fff"} shadow={"9"}>
-                JJ
+                <MaterialIcons name="person" color="white" size={28} />
               </Avatar>
             </Pressable>
           }
           leftComponent={
             <Pressable
               _pressed={{ background: "#000" }}
-              onPress={() => navigation.navigate("Search")}
+              onPress={() => navigation.navigate("Menu")}
             >
-              <MaterialIcons name="search" size={34} color="grey" />
+              <MaterialIcons name="menu" size={34} color="white" />
             </Pressable>
           }
           centerComponent={
             <>
-              <MaterialIcons name="my-location" size={24} color="#FF5733" />
-              <Text fw="bold" c="gray">
-                Kampala, Uganada
+              <Text fw="900" color="#fff" fontSize={22}>
+                {screen}
               </Text>
             </>
           }
-          backgroundColor="#fff"
+          backgroundColor="#FFA500"
         />
       </HStack>
     </>

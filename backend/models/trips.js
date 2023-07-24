@@ -9,6 +9,7 @@ const Trip = new mongoose.Schema({
   color: { type: String },
   label: { type: String },
   likes: { type: Number },
+  image: { type: String },
 });
 
 module.exports = mongoose.model("trip", Trip);

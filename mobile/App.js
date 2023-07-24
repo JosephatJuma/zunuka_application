@@ -8,12 +8,15 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
+
 import Account from "./views/Account";
 import Details from "./views/Details";
 import Cart from "./views/Cart";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Search from "./views/Search";
+import Menu from "./views/Menu";
+
 export default function App() {
   const HomeScreen = () => {
     return (
@@ -30,7 +33,7 @@ export default function App() {
       </NativeBaseProvider>
     );
   };
-  const CartScreen = () => {
+  const ShopScreen = () => {
     return (
       <NativeBaseProvider>
         <Cart />
@@ -59,6 +62,13 @@ export default function App() {
     return (
       <NativeBaseProvider>
         <Login />
+      </NativeBaseProvider>
+    );
+  };
+  const MenuScreen = () => {
+    return (
+      <NativeBaseProvider>
+        <Menu />
       </NativeBaseProvider>
     );
   };
@@ -114,8 +124,17 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Cart"
-          component={CartScreen}
+          name="Menu"
+          component={MenuScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            gestureEnabled: true,
+            gestureDirection: "horizontal-inverted",
+          }}
+        />
+        <Stack.Screen
+          name="Shop"
+          component={ShopScreen}
           options={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           }}
@@ -136,6 +155,14 @@ export default function App() {
           }}
         />
       </Stack.Navigator>
+
+      <Stack.Screen
+        name="Menu"
+        component={RegisterScreen}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
     </NavigationContainer>
   );
 }

@@ -7,8 +7,11 @@ import Footer from "../components/Footer";
 import { Ionicons } from "@expo/vector-icons";
 
 import CartBody from "../components/cart/CartBody";
+import AppHeader from "../components/AppHeader";
+import useUser from "../hooks/useUser";
 const Cart = () => {
   const [scrollY, setScrollY] = useState(0);
+  const user = useUser();
   const prevScrollY = useRef(0);
   const handleScroll = (event) => {
     const currentScrollY = event.nativeEvent.contentOffset.y;
@@ -20,7 +23,7 @@ const Cart = () => {
   return (
     <>
       <StatusBar backgroundColor={"transparent"} barStyle={"dark-content"} />
-      <Header leftComponent={<BackButton />} backgroundColor="#fff" />
+      <AppHeader user={user} screen={"Shop"} />
       <VStack w="96%" alignSelf="center">
         <Input
           placeholder="Search"
