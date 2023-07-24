@@ -5,7 +5,7 @@ const path = require("path");
 // Define Multer storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../public/assets/uploads"));
+    cb(null, path.join(__dirname, "../public/uploads"));
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -17,7 +17,14 @@ exports.upload = multer({ storage: storage });
 
 //Create a new Trip
 exports.addTrip = async (req, res) => {
+  if (!req.file) {
+    return res.status(500).json({ error: "No file uploaded" });
+  }
+
+  // File has been uploaded and can be accessed via req.file
+  console.log("File uploaded:", req.file);
   const filename = req.file.filename;
+  console.log(req.file);
   const image = filename;
   const {
     title,
