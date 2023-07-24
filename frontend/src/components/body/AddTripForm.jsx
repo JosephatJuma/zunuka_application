@@ -5,24 +5,26 @@ import {
   Text,
   Button,
   Dialog,
-  Tabs,
   Card,
+  FileButton,
+  Avatar,
 } from "@mantine/core";
-import { TextInput, Drawer, Textarea, Notification } from "@mantine/core";
-import { DateInput, TimeInput } from "@mantine/dates";
-import { Select, Slider, Box, useMantineTheme } from "@mantine/core";
+import { TextInput, Textarea } from "@mantine/core";
+import { DateInput } from "@mantine/dates";
+import { Select, Slider, Box } from "@mantine/core";
 
-import { IconPlus, IconX, IconCheck } from "@tabler/icons-react";
+import { IconX, IconCheck } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-export function AddTaskForm() {
+export const AddTripForm = React.memo(() => {
   const api_url = process.env.REACT_APP_API_URL;
   const user = useSelector((state) => state.login.user);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null > null);
   const [date, setDate] = useState(null > "");
-  const [time, setTime] = useState(null > "");
+  const [endDate, setEndDate] = useState(null > "");
   const [color, setColor] = useState("");
   const [label, setLabel] = useState("");
 
@@ -42,27 +44,34 @@ export function AddTaskForm() {
   const clearMessage = () => {
     setMessage("");
   };
-  const submitTask = async () => {
+  const submitTrip = async () => {
     clearMessage();
-    const task = {
-      priority: priority,
-      user_id: user._id,
-      description: description,
-      title: title,
-      due_date: date,
-      color: color,
-      label: label,
-      status: status,
-      due_time: time,
-    };
-    console.log(task);
+
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("priority", priority);
+    formData.append("description", description);
+    formData.append("title", title);
+    formData.append("start_date", date);
+    formData.append("color", color);
+    formData.append("label", label);
+    formData.append("status", status);
+    formData.append("end_date", endDate);
     try {
-      const response = await axios.post(`${api_url}/tasks/${user._id}`, task);
+      const response = await axios.post(
+        `http://192.168.1.5:1000/api/v1/trips/add/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       setMessage(response.data.message);
       if (response.data.success === true) {
         setSucess(true);
         setColor("");
-        setTime("");
+        setEndDate("");
         setTitle("");
         setDate("");
         setPriority(50);
@@ -113,15 +122,18 @@ export function AddTaskForm() {
             <DateInput
               value={date}
               onChange={setDate}
-              label="Due Date"
+              label="Start Date"
               placeholder="2023-20-12"
               disallowInput
             />
-            <TimeInput
-              label="Due Time"
-              onChange={(e) => setTime(e.target.value)}
-              value={time}
+            <DateInput
+              value={endDate}
+              onChange={setEndDate}
+              label="End Date"
+              placeholder="2023-20-12"
+              disallowInput
             />
+
             <ColorInput
               disallowInput
               label="Select color"
@@ -176,6 +188,16 @@ export function AddTaskForm() {
               onChange={setLabel}
             />
           </Group>
+          <Group position="center">
+            {image && <Avatar src={URL.createObjectURL(image)} />}
+            <FileButton onChange={setImage} accept="image/png,image/jpeg">
+              {(props) => (
+                <Button {...props}>
+                  {image ? "Change Image" : "Upload image"}
+                </Button>
+              )}
+            </FileButton>
+          </Group>
           <Box sx={{ margin: "auto" }}>
             <Text mt="xl" size="xl" fw={"bold"}>
               {priority >= 80
@@ -196,12 +218,12 @@ export function AddTaskForm() {
           </Box>
           <Button
             sx={{ backgroundColor: "#800080", width: "100%", marginTop: 20 }}
-            onClick={submitTask}
+            onClick={submitTrip}
           >
-            Save Task
+            Save Trip
           </Button>
         </form>
       </Card>
     </>
   );
-}
+});

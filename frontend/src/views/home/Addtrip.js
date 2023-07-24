@@ -1,16 +1,16 @@
 import React from "react";
-import { AddTaskForm } from "../../components/body/AddTaskForm";
+import { AddTripForm } from "../../components/body/AddTripForm";
 import { SideBar } from "../../components/navigation/SideBar";
 import { AppHeader } from "../../components/navigation/Header";
 import { Flex } from "@mantine/core";
-export default function Addtask() {
+export const Addtrip = React.memo(() => {
   return (
     <div>
       <AppHeader active={"Add Task"} />
       <Flex>
         <SideBar active={"Add Task"} />
-        <AddTaskForm />
+        <AddTripForm />
       </Flex>
     </div>
   );
-}
+});
