@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     height: "100%",
     width: "100%",
-    backgroundColor: "#FF5733",
+    backgroundColor: theme.fn.primaryColor(),
     color: "white",
   },
 
@@ -116,7 +116,7 @@ const useStyles = createStyles((theme) => ({
     color: "GrayText",
 
     "&:hover": {
-      backgroundColor: "#FF5733",
+      backgroundColor: theme.fn.primaryColor(),
       color: "white",
     },
   },
@@ -130,7 +130,6 @@ const useStyles = createStyles((theme) => ({
   linkIcon: {
     ref: getStylesRef("icon"),
     marginRight: theme.spacing.sm,
-    color: "#fff",
     fontSize: 40,
   },
   actionIcon: {
@@ -142,7 +141,7 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     "&, &:hover": {
-      backgroundColor: "#FF5733",
+      backgroundColor: theme.fn.primaryColor(),
       [`& .${getStylesRef("icon")}`]: {
         opacity: 0.9,
       },
@@ -181,8 +180,8 @@ export function AppHeader({ active }) {
         sx={{ position: "sticky" }}
       >
         <Container className={classes.header} size={"98%"}>
-          <Image src={logo} width={100} alt="LOGO" className={classes.logo} />
-
+          {/* <Image src={logo} width={100} alt="LOGO" className={classes.logo} /> */}
+          <h2 className={classes.logo}>Zunguka</h2>
           <Burger
             onClick={open}
             className={classes.burger}
@@ -277,7 +276,8 @@ export function AppHeader({ active }) {
       >
         <Drawer.Content className={classes.drawer}>
           <Navbar className={classes.navbar}>
-            <Image src={logo2} width={100} alt="LOGO" />
+            {/* <Image src={logo2} width={100} alt="LOGO" /> */}
+            <h2>Zunguka</h2>
             <Navbar.Section>
               {data.map((item) => {
                 return (

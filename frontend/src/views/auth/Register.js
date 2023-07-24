@@ -98,7 +98,7 @@ function Register() {
         <form
           onSubmit={form.onSubmit(
             (values, _event) => {
-              submitData(`${api_url}auth/register/`, values);
+              submitData(`${api_url}auth/admin/register/`, values);
             },
             (validationErrors, _values, _event) => {
               return;
