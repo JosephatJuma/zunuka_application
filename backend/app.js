@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //support parsing of applica
 app.use(cors());
 //app.use(express.static(path.join(__dirname, "public"))); //set public dir for assests
 //app.use("/public", express.static("public"));
+app.use(express.static("public"));
 //db
 mongoose.connect(database.connect, {
   useNewUrlParser: true,
