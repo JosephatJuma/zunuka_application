@@ -22,11 +22,7 @@ const Footer = ({ selected, scrollY }) => {
       icon: <MaterialIcons name="shopping-bag" />,
       active: 2,
     },
-    {
-      name: "Bookings",
-      icon: <MaterialCommunityIcons name="briefcase-check" />,
-      active: 3,
-    },
+
     {
       name: "Hotel",
       icon: <MaterialIcons name="hotel" />,
@@ -53,16 +49,15 @@ const Footer = ({ selected, scrollY }) => {
         return (
           <Pressable
             key={index}
-            borderTopWidth={selected === screen.active ? 1 : 0}
             cursor="pointer"
             opacity={selected === screen.active ? 1 : 0.5}
-            py="2"
+            py="1"
             flex={1}
             onPress={() => navigate.navigate(screen.name)}
           >
             <Center>
-              <Icon mb="1" as={screen.icon} color="grey" size="md" />
-              <Text color="grey" fontSize="13" fontWeight={"700"}>
+              <Icon mb="1" as={screen.icon} color="#FF5733" size="md" />
+              <Text color="#FF5733" fontSize="14" fontWeight={"700"}>
                 {screen.name}
               </Text>
             </Center>

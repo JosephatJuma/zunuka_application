@@ -51,7 +51,7 @@ function HomeSlide() {
         left={"-5%"}
         zIndex={1}
         padding={4}
-        bg={"#FFA500"}
+        bg={"#FF5733"}
         onPress={hitPrev}
       >
         <MaterialIcons name="arrow-back-ios" color={"white"} size={15} />
@@ -64,7 +64,7 @@ function HomeSlide() {
         left={"95%"}
         zIndex={1}
         padding={4}
-        bg={"#FFA500"}
+        bg={"#FF5733"}
         onPress={hitNext}
       >
         <MaterialIcons name="arrow-forward-ios" color={"white"} size={15} />
@@ -78,7 +78,7 @@ function HomeSlide() {
               key={i}
               style={[
                 styles.dot,
-                { backgroundColor: i === index ? "#FFA500" : "#fff" },
+                { backgroundColor: i === index ? "#FF5733" : "#fff" },
               ]}
             />
           ))}

@@ -102,9 +102,8 @@ export default function App() {
           name="Account"
           component={AccountScreen}
           options={{
-            cardStyleInterpolator:
-              CardStyleInterpolators.forModalPresentationIOS,
-            gestureDirection: "vertical",
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            gestureDirection: "horizontal",
             gestureEnabled: true,
           }}
         />

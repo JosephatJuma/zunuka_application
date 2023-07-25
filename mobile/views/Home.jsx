@@ -38,12 +38,13 @@ function Home() {
 
   return (
     <>
+      <AppHeader user={user} screen={"Home"} />
       {/* Use Animated.View for the header and set the style */}
       <Animated.View
         style={{
           height: scrollY.interpolate({
             inputRange: [0, headerScrollThreshold],
-            outputRange: [330, 0],
+            outputRange: [250, 0],
             extrapolate: "clamp",
           }),
           // backgroundColor: "blue", // Change this to your desired top bar background color
@@ -51,8 +52,6 @@ function Home() {
           alignItems: "center",
         }}
       >
-        <AppHeader user={user} screen={"Home"} />
-
         <Stack>
           <Text>Hi {user !== null ? user?.name : "Guest"},</Text>
           <Heading fontWeight={"900"}>Where would you want to go?</Heading>
@@ -61,9 +60,9 @@ function Home() {
       </Animated.View>
       <HomeMain onScroll={onScroll} />
       {/* Use Animated.View for the footer and set the style */}
-      <Animated.View style={{ opacity: scrollY <= 0 ? 1 : footerOpacity }}>
-        <Footer selected={0} />
-      </Animated.View>
+      {/* <Animated.View style={{ opacity: scrollY <= 0 ? 1 : footerOpacity }}> */}
+      <Footer selected={0} />
+      {/* </Animated.View> */}
     </>
   );
 }
