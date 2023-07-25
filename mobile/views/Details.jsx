@@ -13,7 +13,8 @@ const Details = ({ item }) => {
       <Image
         style={{ width: "100%", height: 500 }}
         source={{
-          uri: item.image,
+          //uri: item.image,
+          uri: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
         }}
       />
       <Box m={2}>
@@ -26,12 +27,7 @@ const Details = ({ item }) => {
           imageSize={40}
           showRating
         />
-        <Text>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam,
-          fugit dicta. Nemo, nulla perspiciatis. Distinctio nulla illum quam.
-          Unde porro necessitatibus minus expedita sint nisi quos excepturi.
-          Dignissimos, ab porro.
-        </Text>
+        <Text>{item.description}</Text>
         <Text>lorem</Text>
         <Button
           title="Book now"

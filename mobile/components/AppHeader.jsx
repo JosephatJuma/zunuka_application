@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
-import { Text, Avatar, HStack } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Text, Avatar, HStack, Heading } from "native-base";
+import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { StatusBar } from "react-native";
 import { Header } from "@rneui/base";
 import { Pressable } from "react-native";
@@ -25,7 +25,7 @@ function AppHeader({ user, screen }) {
       //position="absolute"
       //top={20}
       >
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="dark-content" />
 
         <Header
           //ViewComponent={LinearGradient}
@@ -50,19 +50,20 @@ function AppHeader({ user, screen }) {
           leftComponent={
             <Pressable
               _pressed={{ background: "#000" }}
-              onPress={() => navigation.navigate("Menu")}
+              onPress={() => navigation.navigate("Search")}
             >
-              <MaterialIcons name="menu" size={34} color="white" />
+              <MaterialIcons name="search" size={34} color="gray" />
             </Pressable>
           }
           centerComponent={
             <>
-              <Text fw="900" color="#fff" fontSize={22}>
-                {screen}
+              <MaterialIcons name="my-location" size={20} color={"#FF5733"} />
+              <Text fontWeight="500" color="grey" fontSize={18}>
+                Kampala, Uganda
               </Text>
             </>
           }
-          backgroundColor="#FFA500"
+          backgroundColor="#fff"
         />
       </HStack>
     </>

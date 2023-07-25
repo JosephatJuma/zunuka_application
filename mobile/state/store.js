@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginSlice from "./auth/loginSlice";
-
+import tripsSlice from "./trips/tripsSlice";
 const store = configureStore({
   reducer: {
     login: loginSlice,
-    // loginForm: loginFormreducer;
+    trips: tripsSlice,
     // registerForm: registerFormreducer;
   },
 });

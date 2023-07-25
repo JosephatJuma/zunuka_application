@@ -7,18 +7,13 @@ import { Link, NavLink } from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   navbar: {
     paddingTop: 30,
-    // backgroundImage: theme.fn.linearGradient(
-    //   5,
-    //   theme.colors.green[6],
-    //   theme.colors.blue[6]
-    // ),
-
     backgroundColor: "#fff",
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },
     color: "GrayText",
   },
+  scroll: {},
 
   version: {
     backgroundColor: theme.fn.lighten(
@@ -108,7 +103,7 @@ export function SideBar({ active }) {
       sx={{ position: "sticky" }}
       shadow="lg"
     >
-      <ScrollArea h={"100%"}>
+      <ScrollArea h={"100%"} p="md" className={classes.scroll}>
         <Navbar.Section className={classes.header}>{links}</Navbar.Section>
         <Navbar.Section className={classes.footer}>
           <Link
