@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { Button, Pressable, Image, Card } from "native-base";
+import { Button, Pressable, Image } from "native-base";
 import { FlashList } from "@shopify/flash-list";
 import { Heading, Text } from "native-base";
 import { ScrollView, View } from "react-native";
@@ -7,6 +7,7 @@ import { Rating } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import useFetchTrips from "../hooks/useFetchTrips";
+import { Card } from "react-native-paper";
 function HomeMain({ onScroll, handleScroll }) {
   const renderItem = ({ item }) => {
     return (
@@ -34,7 +35,8 @@ function HomeMain({ onScroll, handleScroll }) {
           rounded={"xl"}
           source={{
             //uri: "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
-            uri: `https://zunguka.onrender.com/uploads/${item.image}`,
+            //uri: `https://zunguka.onrender.com/uploads/${item.image}`,
+            uri: "https://zunguka.onrender.com/uploads/ldi%20christmas%20party-1@1x_1.jpg",
           }}
           alt=""
         />

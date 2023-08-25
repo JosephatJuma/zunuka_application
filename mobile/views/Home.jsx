@@ -59,10 +59,6 @@ function Home() {
         </Stack>
       </Animated.View>
       <HomeMain onScroll={onScroll} />
-      {/* Use Animated.View for the footer and set the style */}
-      {/* <Animated.View style={{ opacity: scrollY <= 0 ? 1 : footerOpacity }}> */}
-      <Footer selected={0} />
-      {/* </Animated.View> */}
     </>
   );
 }
