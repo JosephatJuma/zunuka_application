@@ -1,15 +1,12 @@
 import React from "react";
-import { FormControl, Input, Link, Spinner } from "native-base";
 import { Formik } from "formik";
-import { StatusBar, Center, Box, VStack, Pressable } from "native-base";
-import { Button } from "@rneui/base";
-import { Snackbar, Text } from "react-native-paper";
+
+import { Snackbar, Text, Button, TextInput } from "react-native-paper";
 import useLogin from "../hooks/useLogin";
 import useApi from "../hooks/useApi";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Canvas, Circle } from "@shopify/react-native-skia";
 import { View, Animated, StyleSheet } from "react-native";
-import BackButton from "../components/shared/BackButton";
+
 import * as Yup from "yup";
 const Login = () => {
   const { message, clearErr, submitData, isSending, navigation } = useLogin();
@@ -22,7 +19,7 @@ const Login = () => {
   });
   const firstCircleAnim = new Animated.Value(-50);
   const secondCircleAnim = new Animated.Value(-50);
-  const size = 500;
+  const size = 200;
   const r = size * 0.33;
 
   React.useEffect(() => {
@@ -51,9 +48,7 @@ const Login = () => {
   });
 
   return (
-    <Box flex={1}>
-      <StatusBar bg="#3700B3" barStyle="dark-content" />
-      <BackButton />
+    <View style={{ flex: 1 }}>
       {/* First Canvas */}
       <Animated.View
         style={{
@@ -81,90 +76,66 @@ const Login = () => {
           <Circle cx={size - r} cy={r} r={r} color="orange" />
         </Canvas>
       </Animated.View>
-      <Center padding={2} marginTop={200}>
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          validationSchema={validationSchema}
-          onSubmit={(values) => submitData(`${apiUrl}auth/login`, values)}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => (
-            <VStack space={2} width={"98%"}>
-              <FormControl.Label>Email Address</FormControl.Label>
 
-              <Input
-                shadow={"2"}
-                placeholder="Enter Email"
-                borderRadius={"xl"}
-                backgroundColor={"white"}
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
-                fontSize={16}
-                InputLeftElement={
-                  <MaterialIcons
-                    name="email"
-                    size={25}
-                    color="gray"
-                    style={{ margin: 2, marginLeft: 10 }}
-                  />
-                }
-              />
-              {errors.email && touched.email && (
-                <Text style={{ color: "red" }}>{errors.email}</Text>
-              )}
-              <FormControl.Label>Password</FormControl.Label>
-              <Input
-                shadow={"2"}
-                placeholder="Enter Password"
-                borderRadius={"xl"}
-                backgroundColor={"white"}
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
-                value={values.password}
-                fontSize={16}
-                type="password"
-                InputLeftElement={
-                  <MaterialIcons
-                    name="fingerprint"
-                    size={25}
-                    color="gray"
-                    style={{ margin: 2, marginLeft: 10 }}
-                  />
-                }
-                InputRightElement={
-                  <Pressable m="2" ml="3" size="6">
-                    <Ionicons name="eye" size={20} color="gray" />
-                  </Pressable>
-                }
-              />
-              {errors.password && touched.password && (
-                <Text style={{ color: "red" }}>{errors.password}</Text>
-              )}
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={validationSchema}
+        onSubmit={(values) => submitData(`${apiUrl}auth/login`, values)}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
+          <View style={{ width: "96%", marginTop: 250, alignSelf: "center" }}>
+            <TextInput
+              placeholder="Enter Email"
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+              value={values.email}
+              fontSize={16}
+              left={<TextInput.Icon icon={"email"} />}
+              label={"Email Address"}
+              mode="outlined"
+            />
+            {errors.email && touched.email && (
+              <Text style={{ color: "red" }}>{errors.email}</Text>
+            )}
 
-              <Button
-                //buttonStyle={{ backgroundColor: "#FF5733" }}
-                onPress={handleSubmit}
-                disabled={isSending}
-                title={isSending ? <Spinner size={"lg"} /> : "Sing In"}
-              />
-              <Text alignSelf={"flex-end"}>Have no Account?</Text>
-              <Link
-                alignSelf={"flex-end"}
-                onPress={() => navigation.navigate("Register")}
-              >
-                Register
-              </Link>
-            </VStack>
-          )}
-        </Formik>
-      </Center>
+            <TextInput
+              placeholder="Enter Password"
+              onChangeText={handleChange("password")}
+              onBlur={handleBlur("password")}
+              value={values.password}
+              type="password"
+              left={<TextInput.Icon icon="fingerprint" />}
+              right={<TextInput.Icon icon="eye" />}
+              label={"Password"}
+              secureTextEntry={true}
+              mode="outlined"
+            />
+            {errors.password && touched.password && (
+              <Text style={{ color: "red" }}>{errors.password}</Text>
+            )}
+
+            <Button
+              onPress={handleSubmit}
+              disabled={isSending}
+              mode={isSending ? "outlined" : "contained"}
+            >
+              {isSending ? <Spinner size={"lg"} /> : "Sing In"}
+            </Button>
+            <Text alignSelf={"flex-end"}>Have no Account?</Text>
+            <Button onPress={() => navigation.navigate("Register")}>
+              Register
+            </Button>
+          </View>
+        )}
+      </Formik>
+
       <Animated.View
         style={{
           ...StyleSheet.absoluteFill,
@@ -198,7 +169,7 @@ const Login = () => {
       >
         {message}
       </Snackbar>
-    </Box>
+    </View>
   );
 };
 

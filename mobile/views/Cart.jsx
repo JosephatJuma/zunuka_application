@@ -3,7 +3,7 @@ import { Input, StatusBar, Icon, VStack } from "native-base";
 import React, { useState, useRef } from "react";
 import { Header } from "@rneui/base";
 import BackButton from "../components/shared/BackButton2";
-import Footer from "../components/Footer";
+
 import { Ionicons } from "@expo/vector-icons";
 
 import CartBody from "../components/cart/CartBody";
@@ -43,7 +43,6 @@ const Cart = () => {
         />
       </VStack>
       <CartBody onScroll={handleScroll} />
-      <Footer selected={2} scrollY={scrollY} />
     </>
   );
 };

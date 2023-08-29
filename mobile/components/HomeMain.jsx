@@ -55,22 +55,7 @@ function HomeMain({ onScroll, handleScroll }) {
       </Pressable>
     );
   };
-  const renderCat = ({ item }) => {
-    return (
-      <Button
-        key={item}
-        size={"md"}
-        rounded="full"
-        width={100}
-        bg={"#FF5733"}
-        shadow={"7"}
-        m={1}
-      >
-        {item}
-      </Button>
-    );
-  };
-  const categories = ["Popular", "Beach", "Hotel", "Games", "Another"];
+
   const nav = useNavigation();
   const { fetchTrips, errMsg } = useFetchTrips();
   useEffect(() => {
@@ -84,17 +69,6 @@ function HomeMain({ onScroll, handleScroll }) {
       scrollEventThrottle={16}
       contentContainerStyle={{ backgroundColor: "white" }}
     >
-      <FlashList
-        scrollEnabled={true}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        estimatedItemSize={10}
-        data={categories}
-        renderItem={renderCat}
-        keyExtractor={(item) => item}
-        //contentContainerStyle={{ height: 100 }}
-      />
-
       <FlashList
         scrollEnabled={true}
         onScroll={handleScroll}

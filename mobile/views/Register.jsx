@@ -1,19 +1,9 @@
 import React from "react";
-import {
-  FormControl,
-  Link,
-  WarningOutlineIcon,
-  Input,
-  Spinner,
-} from "native-base";
-import { StatusBar, Center, Box, VStack } from "native-base";
-import { ScrollView } from "react-native";
-import { Button } from "@rneui/base";
+import { ScrollView, View } from "react-native";
 import { Formik } from "formik";
-import { TextInput, Text, Snackbar } from "react-native-paper";
+import { TextInput, Text, Snackbar, Button } from "react-native-paper";
 import { Canvas, Circle, Group } from "@shopify/react-native-skia";
 import * as Yup from "yup";
-import BackButton from "../components/shared/BackButton";
 import useApi from "../hooks/useApi";
 import useRegister from "../hooks/useRegister";
 
@@ -35,8 +25,6 @@ const Register = () => {
   const r = size * 0.33;
   return (
     <ScrollView contentContainerStyle={{ height: "100%" }}>
-      <StatusBar bg="#3700B3" barStyle="dark-content" />
-      <BackButton />
       <Canvas
         style={{
           position: "absolute",
@@ -52,96 +40,85 @@ const Register = () => {
           <Circle cx={size - r} cy={r} r={r} color="orange" />
         </Group>
       </Canvas>
-      <Center padding={2} mt={200}>
-        <Formik
-          initialValues={{ name: "", email: "", phone: "", password: "" }}
-          validationSchema={validationSchema}
-          onSubmit={(values) => submitData(`${apiUrl}auth/register`, values)}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => (
-            <VStack space={2} width={"98%"}>
-              <TextInput
-                label="Full Name"
-                onChangeText={handleChange("name")}
-                onBlur={handleBlur("name")}
-                value={values.name}
-                fontSize={18}
-                mode="outlined"
-                error={errors.name}
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: 10,
-                }}
-              />
-              {errors.name && touched.name && (
-                <Text style={{ color: "red" }}>{errors.name}</Text>
-              )}
 
-              <TextInput
-                label="Email Address"
-                mode="outlined"
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
-                fontSize={18}
-                error={errors.email}
-              />
-              {errors.email && touched.email && (
-                <Text style={{ color: "red" }}>{errors.email} </Text>
-              )}
-              <TextInput
-                mode="outlined"
-                label="Phone Number"
-                onChangeText={handleChange("phone")}
-                onBlur={handleBlur("phone")}
-                value={values.phone}
-                fontSize={18}
-                error={errors.phone}
-                keyboardType="phone-pad"
-              />
-              {errors.phone && touched.phone && (
-                <Text style={{ color: "red" }}>{errors.phone} </Text>
-              )}
+      <Formik
+        initialValues={{ name: "", email: "", phone: "", password: "" }}
+        validationSchema={validationSchema}
+        onSubmit={(values) => submitData(`${apiUrl}auth/register`, values)}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
+          <View style={{ width: "96%", marginTop: 150, alignSelf: "center" }}>
+            <TextInput
+              label="Full Name"
+              onChangeText={handleChange("name")}
+              onBlur={handleBlur("name")}
+              value={values.name}
+              fontSize={18}
+              mode="outlined"
+              error={errors.name}
+            />
+            {errors.name && touched.name && (
+              <Text style={{ color: "red" }}>{errors.name}</Text>
+            )}
 
-              <TextInput
-                secureTextEntry={true}
-                label="Password"
-                mode="outlined"
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
-                value={values.password}
-                fontSize={18}
-                error={errors.password}
-              />
-              {errors.password && touched.password && (
-                <Text style={{ color: "red" }}>{errors.password} </Text>
-              )}
+            <TextInput
+              label="Email Address"
+              mode="outlined"
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+              value={values.email}
+              fontSize={18}
+              error={errors.email}
+            />
+            {errors.email && touched.email && (
+              <Text style={{ color: "red" }}>{errors.email} </Text>
+            )}
+            <TextInput
+              mode="outlined"
+              label="Phone Number"
+              onChangeText={handleChange("phone")}
+              onBlur={handleBlur("phone")}
+              value={values.phone}
+              fontSize={18}
+              error={errors.phone}
+              keyboardType="phone-pad"
+            />
+            {errors.phone && touched.phone && (
+              <Text style={{ color: "red" }}>{errors.phone} </Text>
+            )}
 
-              <Button
-                bg={"#FF5733"}
-                _pressed={{ background: "grey" }}
-                onPress={handleSubmit}
-                title={isSending ? <Spinner size={"lg"} /> : "Sing In"}
-                disabled={isSending}
-              />
-              <Text alignSelf={"flex-end"}>Already have an Account?</Text>
-              <Link
-                alignSelf={"flex-end"}
-                onPress={() => navigation.navigate("Login")}
-              >
-                Login
-              </Link>
-            </VStack>
-          )}
-        </Formik>
-      </Center>
+            <TextInput
+              secureTextEntry={true}
+              label="Password"
+              mode="outlined"
+              onChangeText={handleChange("password")}
+              onBlur={handleBlur("password")}
+              value={values.password}
+              error={errors.password}
+            />
+            {errors.password && touched.password && (
+              <Text style={{ color: "red" }}>{errors.password} </Text>
+            )}
+
+            <Button
+              onPress={handleSubmit}
+              disabled={isSending}
+              mode={isSending ? "outlined" : "contained"}
+            >
+              {isSending ? "Signing up...." : "Sing In"}
+            </Button>
+            <Text alignSelf={"flex-end"}>Already have an Account?</Text>
+            <Button onPress={() => navigation.navigate("Login")}>Login</Button>
+          </View>
+        )}
+      </Formik>
 
       <Snackbar
         visible={message}

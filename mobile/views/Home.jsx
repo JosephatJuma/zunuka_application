@@ -1,7 +1,6 @@
 import React, { memo, useState, useRef } from "react";
 import { Text, Stack, Heading } from "native-base";
 import HomeMain from "../components/HomeMain";
-import Footer from "../components/Footer";
 import { Animated } from "react-native"; // Import Animated from react-native
 import AppHeader from "../components/AppHeader";
 import HomeSlide from "../components/HomeSlide";
