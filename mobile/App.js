@@ -1,14 +1,11 @@
 import React from "react";
-
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+import { DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
 import DrawerComponent from "./app/components/DrawerComponent";
 import Home from "./app/home/Home";
 import AccountNav from "./navigators/AccountNav";
@@ -16,8 +13,10 @@ import TripsNav from "./navigators/TripsNav";
 import Explore from "./navigators/Explore";
 import Shop1 from "./app/shop/Shop1";
 import Details from "./app/user/Details";
+
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialBottomTabNavigator();
+
 export default function App() {
   const theme = useSelector((state) => state.theme.theme);
 
