@@ -83,7 +83,7 @@ export default data = [
       "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
-    id: 21,
+    id: 31,
     title: "Title",
     image:
       "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
@@ -123,5 +123,64 @@ export default data = [
     title: "Title",
     image:
       "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+  },
+  {
+    id: 21,
+    title: "test1",
+    image: "https://jinjacity.go.ug/sites/default/files/2023-04/jinja.jpg",
+  },
+  {
+    id: 22,
+    title: "test2",
+    image:
+      "https://brilliant-uganda.imgix.net/Wild-Waters-Lodge-Jinja-Main-Area.jpeg?auto=format,enhance,compress&fit=crop&crop=entropy,faces,focalpoint&w=580&h=480&q=40",
+  },
+  {
+    id: 23,
+    title: "test3",
+    image:
+      "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+  },
+  {
+    id: 24,
+    title: "test4",
+    image:
+      "https://www.ugandabudgetsafaris.com/wp-content/uploads/2019/06/Jinja-District-750x450.jpg",
+  },
+  {
+    id: 25,
+    title: "test5",
+    image:
+      "https://brilliant-uganda.imgix.net/Wild-Waters-Lodge-Jinja-Main-Area.jpeg?auto=format,enhance,compress&fit=crop&crop=entropy,faces,focalpoint&w=580&h=480&q=40",
+  },
+  {
+    id: 26,
+    title: "test6",
+    image:
+      "https://brilliant-uganda.imgix.net/Wild-Waters-Lodge-Jinja-Main-Area.jpeg?auto=format,enhance,compress&fit=crop&crop=entropy,faces,focalpoint&w=580&h=480&q=40",
+  },
+  {
+    id: 27,
+    title: "test7",
+    image:
+      "https://www.ugandabudgetsafaris.com/wp-content/uploads/2019/06/Jinja-District-750x450.jpg",
+  },
+  {
+    id: 28,
+    title: "test8",
+    image:
+      "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+  },
+  {
+    id: 29,
+    title: "test9",
+    image:
+      "https://brilliant-uganda.imgix.net/Wild-Waters-Lodge-Jinja-Main-Area.jpeg?auto=format,enhance,compress&fit=crop&crop=entropy,faces,focalpoint&w=580&h=480&q=40",
+  },
+  {
+    id: 30,
+    title: "test10",
+    image:
+      "https://www.ugandabudgetsafaris.com/wp-content/uploads/2019/06/Jinja-District-750x450.jpg",
   },
 ];

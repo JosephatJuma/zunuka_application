@@ -1,18 +1,8 @@
-import { View, RefreshControl, Image } from "react-native";
+import { RefreshControl } from "react-native";
 import React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import {
-  Card,
-  Text,
-  Chip,
-  Divider,
-  IconButton,
-  Menu,
-  Button,
-  List,
-  Title,
-} from "react-native-paper";
+import { Card, Text, Chip, Divider, Button, e } from "react-native-paper";
 import data from "../components/shared/data";
 import Header from "../components/Header";
 const Shop1 = () => {
@@ -57,15 +47,9 @@ const Shop1 = () => {
   return (
     <>
       <Header title={"Shop"} />
-      {/* <Title style={{ fontWeight: "bold", margin: 10 }}>Camping tools</Title> */}
+
       <FlashList
-        refreshControl={
-          <RefreshControl
-            //onRefresh={onRefresh}
-            size="default"
-            title="Relaoding"
-          />
-        }
+        refreshControl={<RefreshControl size="default" title="Relaoding" />}
         //onScroll={onScroll}
         //horizontal={true}
         scrollEnabled={true}
