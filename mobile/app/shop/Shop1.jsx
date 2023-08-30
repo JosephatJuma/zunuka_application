@@ -13,7 +13,7 @@ import {
   List,
   Title,
 } from "react-native-paper";
-import data from "../components/data";
+import data from "../components/shared/data";
 import Header from "../components/Header";
 const Shop1 = () => {
   const navigation = useNavigation();
